@@ -1,0 +1,1627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+</head>
+<body>
+ <div class="cursor-follower" id="cursor"></div>
+
+<!-- Sticky Navbar -->
+<nav class="navbar" id="navbar">
+  <div class="logo">
+    <a href="#">
+      <img src="logo-min.png" alt="Xspica Luxury Furniture" class="logo-img" id="mainLogo">
+    </a>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#about">About</a></li>
+    
+    <!-- Products Dropdown - Simple 4 options -->
+    <li class="dropdown-trigger" style="position: relative;">
+      <a href="#">Products <i class="fas fa-chevron-down" style="font-size: 10px;"></i></a>
+      <div class="simple-dropdown">
+        <div class="simple-dropdown-content">
+          <a href="collection.html?collection=seating">Collaborative</a>
+          <a href="collection.html?collection=executive-cabin">Executive Cabin</a>
+          <a href="collection.html?collection=modern">Workstation</a>
+          <a href="collection.html?collection=seating">Chair</a>
+        </div>
+      </div>
+    </li>
+    
+    <!-- Blog Dropdown - NEW -->
+    <li class="dropdown-trigger" style="position: relative;">
+      <a href="#">Blog <i class="fas fa-chevron-down" style="font-size: 10px;"></i></a>
+      <div class="blog-dropdown">
+        <div class="blog-dropdown-content">
+          <a href="blog1.html">Modular Office Workstations</a>
+          <a href="blog2.html">Xspica Furniture in Chennai</a>
+          <a href="blog3.html">Create a Comfortable Atmosphere</a>
+        </div>
+      </div>
+    </li>
+    
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="#" class="btn-cta magnetic-btn" id="getQuoteBtn">Get Quote</a>
+  <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+</nav>
+
+<!-- Premium Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-header-row">
+    <img src="logo-min.png" alt="Xspica" class="mobile-menu-logo-img">
+    <div class="close-mobile" id="closeMobile"><i class="fas fa-times"></i></div>
+  </div>
+  
+  <div class="mobile-nav-item">
+    <a href="index.html" class="mobile-nav-link">Home</a>
+  </div>
+  <div class="mobile-nav-item">
+    <a href="index.html#about" class="mobile-nav-link">About</a>
+  </div>
+  
+  <!-- Products Dropdown - Mobile -->
+  <div class="mobile-nav-item">
+    <div class="mobile-nav-link" id="mobileProductsTrigger">
+      Products <i class="fas fa-chevron-down"></i>
+    </div>
+    <div class="mobile-submenu" id="mobileProductsSubmenu">
+      <a href="collection.html?collection=seating">Collaborative</a>
+      <a href="collection.html?collection=executive-cabin">Executive Cabin</a>
+      <a href="collection.html?collection=modern">Workstation</a>
+      <a href="collection.html?collection=seating">Chair</a>
+    </div>
+  </div>
+  
+  <!-- Blog Dropdown - Mobile NEW -->
+  <div class="mobile-nav-item">
+    <div class="mobile-nav-link" id="mobileBlogTrigger">
+      Blog <i class="fas fa-chevron-down"></i>
+    </div>
+    <div class="mobile-submenu" id="mobileBlogSubmenu">
+      <a href="blog1.html">Modular Office Workstations</a>
+      <a href="blog2.html">Xspica Furniture in Chennai</a>
+      <a href="blog3.html">Create a Comfortable Atmosphere</a>
+    </div>
+  </div>
+  
+  <div class="mobile-nav-item">
+    <a href="contact.html" class="mobile-nav-link">Contact</a>
+  </div>
+  
+  <a href="#" class="mobile-cta" id="mobileQuoteBtn">Get Quote</a>
+</div>
+<div class="overlay" id="overlay"></div>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: #FFFFFF;
+    font-family: 'Inter', sans-serif;
+    color: #1A1A1A;
+    overflow-x: hidden;
+  }
+
+  /* ----- NAVBAR (Premium Sticky) ----- */
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    padding: 0 40px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Logo Image styling */
+  .logo-img {
+    height: 48px;
+    width: auto;
+    display: block;
+    transition: all 0.3s ease;
+    filter: brightness(0) invert(0);
+  }
+
+  .logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  /* Desktop Nav Menu */
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    list-style: none;
+  }
+  .nav-links li {
+    position: relative;
+  }
+  .nav-links a {
+    text-decoration: none;
+    font-weight: 500;
+    color: #1A1A1A;
+    transition: color 0.2s;
+    font-size: 0.95rem;
+    letter-spacing: 0.3px;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: #FF7A00;
+    transition: width 0.25s ease;
+  }
+  .nav-links a:hover::after {
+    width: 100%;
+  }
+  .nav-links a:hover {
+    color: #FF7A00;
+  }
+  .active-menu a {
+    color: #FF7A00 !important;
+  }
+  .active-menu a::after {
+    width: 100% !important;
+    background: #FF7A00;
+  }
+
+  /* Desktop Simple Dropdown - Products */
+  .dropdown-trigger {
+    position: relative;
+  }
+  
+  .simple-dropdown {
+    position: absolute;
+    top: 100%;
+    left: -10px;
+    width: 200px;
+    background: rgba(255,255,255,0.98);
+    backdrop-filter: blur(12px);
+    border-radius: 16px;
+    padding: 8px 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s cubic-bezier(0.2,0.9,0.4,1.1), visibility 0.3s cubic-bezier(0.2,0.9,0.4,1.1);
+    transform: translateY(10px);
+    box-shadow: 0 20px 35px rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.05);
+    pointer-events: none;
+    z-index: 10000;
+    margin-top: 5px;
+  }
+  
+  .simple-dropdown-content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .simple-dropdown-content a {
+    display: block;
+    color: #1A1A1A;
+    padding: 10px 20px;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+  
+  .simple-dropdown-content a:hover {
+    color: #FF7A00;
+    background: rgba(255, 122, 0, 0.05);
+    padding-left: 25px;
+  }
+  
+  /* Blog Dropdown */
+  .blog-dropdown {
+    position: absolute;
+    top: 100%;
+    left: -10px;
+    width: 260px;
+    background: rgba(255,255,255,0.98);
+    backdrop-filter: blur(12px);
+    border-radius: 16px;
+    padding: 8px 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s cubic-bezier(0.2,0.9,0.4,1.1), visibility 0.3s cubic-bezier(0.2,0.9,0.4,1.1);
+    transform: translateY(10px);
+    box-shadow: 0 20px 35px rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.05);
+    pointer-events: none;
+    z-index: 10000;
+    margin-top: 5px;
+  }
+  
+  .blog-dropdown-content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .blog-dropdown-content a {
+    display: block;
+    color: #1A1A1A;
+    padding: 10px 20px;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+  }
+  
+  .blog-dropdown-content a:last-child {
+    border-bottom: none;
+  }
+  
+  .blog-dropdown-content a:hover {
+    color: #FF7A00;
+    background: rgba(255, 122, 0, 0.05);
+    padding-left: 25px;
+  }
+  
+  .dropdown-trigger::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 15px;
+    background: transparent;
+    z-index: 10001;
+  }
+  
+  .dropdown-trigger:hover .simple-dropdown,
+  .dropdown-trigger:hover .blog-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  
+  .simple-dropdown:hover,
+  .blog-dropdown:hover {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  /* Magnetic CTA Button */
+  .btn-cta {
+    background: #FF7A00;
+    border: none;
+    padding: 10px 28px;
+    border-radius: 40px;
+    font-weight: 600;
+    color: white;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 12px rgba(255,122,0,0.2);
+    letter-spacing: 0.3px;
+    display: inline-block;
+    text-decoration: none;
+  }
+  .btn-cta:hover {
+    background: #e06d00;
+    transform: scale(1.02);
+    box-shadow: 0 8px 20px rgba(255,122,0,0.3);
+  }
+  .magnetic-btn {
+    display: inline-block;
+    transition: transform 0.2s ease;
+  }
+
+  /* Mobile Menu Styles */
+  .hamburger {
+    display: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #1A1A1A;
+    z-index: 10001;
+  }
+
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -75%;
+    width: 75%;
+    max-width: 400px;
+    height: 100vh;
+    background: rgba(255,255,255,0.98);
+    backdrop-filter: blur(24px);
+    z-index: 10002;
+    padding: 28px 24px 40px;
+    transition: right 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: -10px 0 40px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    overflow-y: auto;
+  }
+  .mobile-menu.open {
+    right: 0;
+  }
+  .mobile-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+  .mobile-menu-logo-img {
+    height: 42px;
+    width: auto;
+    filter: brightness(0);
+  }
+  .close-mobile {
+    font-size: 28px;
+    cursor: pointer;
+    color: #1A1A1A;
+    transition: 0.2s;
+    line-height: 1;
+  }
+  .close-mobile:hover { color: #FF7A00; }
+  
+  .mobile-nav-item {
+    width: 100%;
+  }
+  .mobile-nav-link {
+    font-size: 1.3rem;
+    font-weight: 500;
+    text-decoration: none;
+    color: #1A1A1A;
+    padding: 14px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    transition: 0.2s;
+  }
+  .mobile-nav-link i {
+    font-size: 0.9rem;
+    transition: transform 0.2s;
+  }
+  .mobile-nav-link.active-dropdown i {
+    transform: rotate(180deg);
+  }
+  .mobile-submenu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.33, 1, 0.68, 1);
+    background: rgba(0,0,0,0.02);
+    border-radius: 16px;
+    margin-bottom: 8px;
+    padding-left: 12px;
+  }
+  .mobile-submenu a {
+    display: block;
+    padding: 12px 0 12px 12px;
+    font-size: 1rem;
+    color: #444;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0,0,0,0.03);
+  }
+  .mobile-submenu a:last-child {
+    border-bottom: none;
+  }
+  .mobile-submenu a:hover {
+    color: #FF7A00;
+    padding-left: 18px;
+  }
+  .mobile-cta {
+    margin-top: 32px;
+    background: #FF7A00;
+    text-align: center;
+    border-radius: 44px;
+    padding: 14px;
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+    display: block;
+    font-size: 1rem;
+  }
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.3);
+    backdrop-filter: blur(3px);
+    z-index: 10001;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s ease;
+  }
+  .overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  @media (max-width: 1024px) {
+    .nav-links { display: none; }
+    .hamburger { display: block; }
+    .navbar .btn-cta { display: none; }
+    .navbar { padding: 0 24px; }
+  }
+
+  /* Hero Section */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(105deg, #1A1A1A 0%, #2C2C2C 100%);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-top: 0;
+    padding-top: 0;
+  }
+  .hero-content {
+    text-align: center;
+    color: white;
+    z-index: 2;
+    max-width: 800px;
+    padding: 0 24px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 7vw, 5.8rem);
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+  }
+  .hero p {
+    font-size: 1.2rem;
+    opacity: 0.85;
+    max-width: 600px;
+    margin: 0 auto;
+    font-weight: 300;
+  }
+  .cursor-follower {
+    width: 28px;
+    height: 28px;
+    background: #FF7A00;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 99999;
+    mix-blend-mode: difference;
+    transition: 0.08s linear;
+  }
+  .floating-cta {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    z-index: 998;
+    background: #FF7A00;
+    padding: 16px 28px;
+    border-radius: 60px;
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.2);
+    backdrop-filter: blur(4px);
+    transition: 0.2s;
+    cursor: pointer;
+    border: none;
+    font-family: 'Inter', sans-serif;
+  }
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 2.5rem; }
+    .floating-cta { padding: 12px 20px; font-size: 0.8rem; bottom: 20px; right: 20px; }
+  }
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+  
+  // WhatsApp Configuration
+  const WHATSAPP_NUMBER = '9789029012';
+  const WHATSAPP_MESSAGE = 'Hi Xspica, I need to discuss regarding workspace furniture. Could you please help me with a quote?';
+  
+  // Function to open WhatsApp
+  function openWhatsApp() {
+    const encodedMessage = encodeURIComponent(WHATSAPP_MESSAGE);
+    const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+    window.open(whatsappURL, '_blank');
+  }
+  
+  // Mouse follower
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', (e) => {
+    gsap.to(cursor, { duration: 0.05, x: e.clientX - 14, y: e.clientY - 14 });
+  });
+
+  // Magnetic button effect (desktop)
+  const magneticBtn = document.querySelector('.magnetic-btn');
+  if(magneticBtn) {
+    magneticBtn.addEventListener('mousemove', (e) => {
+      const rect = magneticBtn.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width/2;
+      const y = e.clientY - rect.top - rect.height/2;
+      gsap.to(magneticBtn, { duration: 0.3, x: x * 0.2, y: y * 0.2, ease: "power2.out" });
+    });
+    magneticBtn.addEventListener('mouseleave', () => { gsap.to(magneticBtn, { duration: 0.4, x: 0, y: 0 }); });
+  }
+  
+  // NAVBAR SCROLL HANDLER
+  const navbar = document.getElementById('navbar');
+  
+  function handleNavbarScroll() {
+    if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  }
+  
+  window.addEventListener('scroll', handleNavbarScroll);
+  handleNavbarScroll();
+  
+  // Active link on scroll
+  const sections = document.querySelectorAll('section[id]');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 120;
+      if(pageYOffset >= sectionTop) current = section.getAttribute('id');
+    });
+    
+    document.querySelectorAll('.nav-links > li > a').forEach(link => {
+      const href = link.getAttribute('href');
+      if (!href || href === '#' || href === '') return;
+      
+      link.parentElement.classList.remove('active-menu');
+      if (href === `#${current}`) {
+        link.parentElement.classList.add('active-menu');
+      }
+    });
+  });
+  
+  // Navbar slide from top on load
+  gsap.fromTo(".navbar", { y: -100 }, { duration: 0.8, y: 0, ease: "power3.out" });
+  
+  // Hero text reveal
+  gsap.from(".hero h1", { duration: 1, y: 60, opacity: 0, ease: "back.out(0.6)" });
+  gsap.from(".hero p", { duration: 1, y: 30, opacity: 0, delay: 0.3 });
+  
+  // Floating CTA animation
+  gsap.to("#floatingCTA", { y: -6, duration: 1.2, repeat: -1, yoyo: true, ease: "power1.inOut" });
+  
+  // Quote buttons - WhatsApp Integration
+  const getQuote = document.getElementById('getQuoteBtn');
+  if(getQuote) getQuote.addEventListener('click', (e) => { 
+    e.preventDefault(); 
+    openWhatsApp();
+  });
+  
+  document.getElementById('floatingCTA')?.addEventListener('click', () => openWhatsApp());
+  
+  const mobileQuote = document.getElementById('mobileQuoteBtn');
+  if(mobileQuote) mobileQuote.addEventListener('click', (e) => { 
+    e.preventDefault(); 
+    openWhatsApp();
+    closeMobileMenu(); 
+  });
+  
+  // Mobile Menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const overlayDiv = document.getElementById('overlay');
+  const closeMobileBtn = document.getElementById('closeMobile');
+  
+  // Products dropdown for mobile
+  const productsTrigger = document.getElementById('mobileProductsTrigger');
+  const productsSubmenu = document.getElementById('mobileProductsSubmenu');
+  let productsOpen = false;
+  
+  if(productsTrigger && productsSubmenu) {
+    productsTrigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if(productsOpen) {
+        productsSubmenu.style.maxHeight = '0';
+        productsTrigger.classList.remove('active-dropdown');
+      } else {
+        productsSubmenu.style.maxHeight = productsSubmenu.scrollHeight + 'px';
+        productsTrigger.classList.add('active-dropdown');
+      }
+      productsOpen = !productsOpen;
+    });
+  }
+  
+  // Blog dropdown for mobile - NEW
+  const blogTrigger = document.getElementById('mobileBlogTrigger');
+  const blogSubmenu = document.getElementById('mobileBlogSubmenu');
+  let blogOpen = false;
+  
+  if(blogTrigger && blogSubmenu) {
+    blogTrigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if(blogOpen) {
+        blogSubmenu.style.maxHeight = '0';
+        blogTrigger.classList.remove('active-dropdown');
+      } else {
+        blogSubmenu.style.maxHeight = blogSubmenu.scrollHeight + 'px';
+        blogTrigger.classList.add('active-dropdown');
+      }
+      blogOpen = !blogOpen;
+    });
+  }
+  
+  function openMobileMenu() {
+    mobileMenu.classList.add('open');
+    overlayDiv.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    gsap.fromTo(mobileMenu, { right: '-75%' }, { right: '0%', duration: 0.6, ease: "power3.out" });
+  }
+  
+  function closeMobileMenu() {
+    gsap.to(mobileMenu, { right: '-75%', duration: 0.5, ease: "power3.in", onComplete: () => {
+      mobileMenu.classList.remove('open');
+      overlayDiv.classList.remove('active');
+      document.body.style.overflow = '';
+      if(productsOpen) {
+        productsSubmenu.style.maxHeight = '0';
+        productsTrigger.classList.remove('active-dropdown');
+        productsOpen = false;
+      }
+      if(blogOpen) {
+        blogSubmenu.style.maxHeight = '0';
+        blogTrigger.classList.remove('active-dropdown');
+        blogOpen = false;
+      }
+    }});
+  }
+  
+  hamburger?.addEventListener('click', openMobileMenu);
+  closeMobileBtn?.addEventListener('click', closeMobileMenu);
+  overlayDiv?.addEventListener('click', closeMobileMenu);
+  
+  document.querySelectorAll('.mobile-menu a:not(.mobile-nav-link)').forEach(link => {
+    link.addEventListener('click', () => { setTimeout(() => { closeMobileMenu(); }, 100); });
+  });
+  
+  document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    if(link.id !== 'mobileProductsTrigger' && link.id !== 'mobileBlogTrigger') {
+      link.addEventListener('click', () => { setTimeout(() => { closeMobileMenu(); }, 100); });
+    }
+  });
+  
+  // Smooth anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
+      if(targetId === "#" || targetId === "") return;
+      const target = document.querySelector(targetId);
+      if(target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if(mobileMenu.classList.contains('open')) closeMobileMenu();
+      }
+    });
+  });
+  
+  // Hero parallax
+  document.querySelector('.hero')?.addEventListener('mousemove', (e) => {
+    const x = (e.clientX / window.innerWidth) * 20;
+    const y = (e.clientY / window.innerHeight) * 20;
+    gsap.to('.hero-content', { duration: 1, x: x, y: y, ease: "power1.out" });
+  });
+  
+  window.dispatchEvent(new Event('scroll'));
+</script>
+
+
+
+
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+<br>
+
+<section class="contact-page-section" id="contact-page">
+  <div class="contact-page-container">
+    
+    <!-- Hero Header -->
+    <div class="contact-hero">
+      <span class="contact-badge">✦ GET IN TOUCH</span>
+      <h1 class="contact-title">Let's Create Your<br><span class="accent">Perfect Workspace</span></h1>
+      <p class="contact-subtitle">We're here to answer your questions and help you find the perfect furniture solutions for your space.</p>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="contact-content-grid">
+      
+      <!-- Left Side: Contact Info & Form -->
+      <div class="contact-left">
+        <!-- Compact Contact Cards -->
+        <div class="contact-info-cards">
+          <div class="info-card">
+            <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="info-details">
+              <h3>Visit Our Showroom</h3>
+              <p>No.10, Kuppuswamy Street, 2nd Floor,<br>Off GN Chetty Rd, T. Nagar,<br>Chennai - 600 017</p>
+              <a href="https://maps.google.com/?q=10+Kuppuswamy+Street+T+Nagar+Chennai" target="_blank" class="info-link">Get Directions <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-icon"><i class="fas fa-phone-alt"></i></div>
+            <div class="info-details">
+              <h3>Call Us</h3>
+              <p><a href="tel:+919789029012">+91 97890 29012</a><br><a href="tel:+919944459888">+91 99444 59888</a></p>
+              <span class="hours">Mon - Sat: 10AM - 8PM</span>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-icon"><i class="fas fa-envelope"></i></div>
+            <div class="info-details">
+              <h3>Email Us</h3>
+              <p><a href="mailto:contact@xspica.com">contact@xspica.com</a><br><a href="mailto:sales@xspica.com">sales@xspica.com</a></p>
+              <span class="hours">We reply within 24h</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Contact Form -->
+        <div class="contact-form-wrapper">
+          <h3>Send Us a Message</h3>
+          <form id="contactForm" class="contact-form">
+            <div class="form-row">
+              <div class="form-group">
+                <input type="text" id="fullName" name="fullName" placeholder=" " required>
+                <label>Full Name *</label>
+              </div>
+              <div class="form-group">
+                <input type="email" id="email" name="email" placeholder=" " required>
+                <label>Email Address *</label>
+              </div>
+            </div>
+            <div class="form-group full-width">
+              <textarea id="message" name="message" rows="3" placeholder=" " required></textarea>
+              <label>Your Message *</label>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="submit-btn">Send Message <i class="fas fa-paper-plane"></i></button>
+              <button type="button" class="whatsapp-btn" onclick="openWhatsApp()">
+                <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+              </button>
+            </div>
+            <p class="form-note">* Required fields. We'll get back to you within 24 hours.</p>
+          </form>
+        </div>
+      </div>
+      
+      <!-- Right Side: Map & Business Hours -->
+      <div class="contact-right">
+        <div class="map-wrapper">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.667234496043!2d80.233237!3d13.042033!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5266f5c8e7c8b5%3A0x5c2e0b7f3e4d0a9!2sT.%20Nagar%2C%20Chennai!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+            width="100%" 
+            height="220" 
+            style="border:0; border-radius: 12px;" 
+            allowfullscreen="" 
+            loading="lazy">
+          </iframe>
+        </div>
+        <div class="hours-wrapper">
+          <h3><i class="far fa-clock"></i> Business Hours</h3>
+          <div class="hour-item"><span>Monday - Friday</span><span>10:00 AM - 8:00 PM</span></div>
+          <div class="hour-item"><span>Saturday</span><span>10:00 AM - 8:00 PM</span></div>
+          <div class="hour-item"><span>Sunday</span><span>By Appointment Only</span></div>
+        </div>
+        <div class="cta-card">
+          <i class="fas fa-calendar-check"></i>
+          <h3>Book a Free Consultation</h3>
+          <p>Visit our showroom for a personalized walkthrough of our premium collections.</p>
+          <button class="cta-book-btn" onclick="openWhatsApp()">
+            <i class="fab fa-whatsapp"></i> Book Appointment
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- FAQ Section -->
+    <div class="contact-faq">
+      <div class="faq-header">
+        <span class="faq-badge">✦ FREQUENTLY ASKED</span>
+        <h2>Common Questions</h2>
+      </div>
+      <div class="faq-grid">
+        <div class="faq-accordion">
+          <button class="faq-question">Do you offer customized furniture solutions? <i class="fas fa-plus"></i></button>
+          <div class="faq-answer"><p>Yes, we specialize in tailor-made modular workstations and storage units designed to fit your specific office dimensions and aesthetic preferences.</p></div>
+        </div>
+        <div class="faq-accordion">
+          <button class="faq-question">What is the delivery time for furniture? <i class="fas fa-plus"></i></button>
+          <div class="faq-answer"><p>Standard delivery takes 7-14 business days. Custom orders may take 3-4 weeks. We also offer express delivery for select items.</p></div>
+        </div>
+        <div class="faq-accordion">
+          <button class="faq-question">Do you provide installation services? <i class="fas fa-plus"></i></button>
+          <div class="faq-answer"><p>Absolutely! We offer professional, end-to-end installation services across Chennai and surrounding regions by our trained technicians.</p></div>
+        </div>
+        <div class="faq-accordion">
+          <button class="faq-question">Can I visit the showroom before purchasing? <i class="fas fa-plus"></i></button>
+          <div class="faq-answer"><p>Yes! Our T Nagar showroom is open Monday to Saturday, 10 AM to 8 PM. Walk-ins are welcome, or you can book an appointment for a dedicated consultation.</p></div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Floating WhatsApp Button -->
+    <div class="floating-whatsapp" onclick="openWhatsApp()">
+      <i class="fab fa-whatsapp"></i>
+      <span>Chat</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-page-section {
+    padding: 50px 5%;
+    background: linear-gradient(135deg, #FFFFFF 0%, #FFF9F0 100%);
+    min-height: 100vh;
+    position: relative;
+  }
+  
+  .contact-page-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Hero Header */
+  .contact-hero {
+    text-align: center;
+    margin-bottom: 45px;
+  }
+  
+  .contact-badge {
+    color: #FF7A00;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 12px;
+    position: relative;
+  }
+  
+  .contact-badge::before,
+  .contact-badge::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 25px;
+    height: 2px;
+    background: #FF7A00;
+    transform: translateY(-50%);
+  }
+  
+  .contact-badge::before { left: -35px; }
+  .contact-badge::after { right: -35px; }
+  
+  .contact-title {
+    font-size: 2.5rem;
+    font-family: 'Playfair Display', serif;
+    color: #1A1A1A;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  
+  .contact-title .accent {
+    color: #FF7A00;
+  }
+  
+  .contact-subtitle {
+    color: #666;
+    font-size: 0.9rem;
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+  
+  /* Main Content Grid */
+  .contact-content-grid {
+    display: grid;
+    grid-template-columns: 1fr 0.85fr;
+    gap: 30px;
+  }
+  
+  /* Compact Info Cards */
+  .contact-info-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+  }
+  
+  .info-card {
+    display: flex;
+    gap: 12px;
+    background: white;
+    padding: 15px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 122, 0, 0.1);
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.03);
+  }
+  
+  .info-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 122, 0, 0.08);
+    border-color: rgba(255, 122, 0, 0.3);
+  }
+  
+  .info-icon {
+    width: 38px;
+    height: 38px;
+    background: rgba(255, 122, 0, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  
+  .info-icon i {
+    font-size: 1rem;
+    color: #FF7A00;
+  }
+  
+  .info-details h3 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #1A1A1A;
+  }
+  
+  .info-details p {
+    font-size: 0.7rem;
+    color: #666;
+    line-height: 1.4;
+    margin-bottom: 3px;
+  }
+  
+  .info-details p a {
+    color: #666;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  
+  .info-details p a:hover {
+    color: #FF7A00;
+  }
+  
+  .info-link {
+    font-size: 0.65rem;
+    color: #FF7A00;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  .info-link i {
+    font-size: 0.6rem;
+    transition: transform 0.2s;
+  }
+  
+  .info-link:hover i {
+    transform: translateX(3px);
+  }
+  
+  .hours {
+    font-size: 0.6rem;
+    color: #888;
+    display: inline-block;
+    margin-top: 3px;
+  }
+  
+  /* Contact Form */
+  .contact-form-wrapper {
+    background: white;
+    padding: 25px;
+    border-radius: 18px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.03);
+  }
+  
+  .contact-form-wrapper h3 {
+    font-size: 1.2rem;
+    font-family: 'Playfair Display', serif;
+    color: #1A1A1A;
+    margin-bottom: 18px;
+  }
+  
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+  }
+  
+  .form-group {
+    position: relative;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 12px 12px 5px 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s ease;
+    background: white;
+  }
+  
+  .form-group textarea {
+    resize: vertical;
+    min-height: 70px;
+  }
+  
+  .form-group label {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.75rem;
+    color: #888;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    background: white;
+    padding: 0 3px;
+  }
+  
+  .form-group textarea + label {
+    top: 14px;
+    transform: none;
+  }
+  
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: #FF7A00;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 122, 0, 0.1);
+  }
+  
+  .form-group input:focus + label,
+  .form-group input:not(:placeholder-shown) + label,
+  .form-group textarea:focus + label,
+  .form-group textarea:not(:placeholder-shown) + label {
+    top: -8px;
+    font-size: 0.6rem;
+    color: #FF7A00;
+  }
+  
+  .full-width {
+    grid-column: span 2;
+  }
+  
+  .form-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 5px;
+  }
+  
+  .submit-btn {
+    background: #FF7A00;
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 40px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .submit-btn:hover {
+    background: #e06d00;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 122, 0, 0.3);
+  }
+  
+  .whatsapp-btn {
+    background: #25D366;
+    color: white;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 40px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .whatsapp-btn:hover {
+    background: #1da851;
+    transform: translateY(-1px);
+  }
+  
+  .form-note {
+    font-size: 0.65rem;
+    color: #888;
+    margin-top: 8px;
+  }
+  
+  /* Right Side */
+  .map-wrapper {
+    margin-bottom: 20px;
+  }
+  
+  .map-wrapper iframe {
+    width: 100%;
+    height: 220px;
+    border-radius: 14px;
+  }
+  
+  .hours-wrapper {
+    background: white;
+    padding: 18px;
+    border-radius: 14px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+  }
+  
+  .hours-wrapper h3 {
+    font-size: 0.95rem;
+    margin-bottom: 12px;
+    color: #1A1A1A;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .hours-wrapper h3 i {
+    color: #FF7A00;
+  }
+  
+  .hour-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 0.75rem;
+  }
+  
+  .hour-item:last-child {
+    border-bottom: none;
+  }
+  
+  .cta-card {
+    background: linear-gradient(135deg, #1A1A1A 0%, #2A2A2A 100%);
+    padding: 20px;
+    border-radius: 14px;
+    text-align: center;
+    color: white;
+  }
+  
+  .cta-card i {
+    font-size: 1.6rem;
+    color: #FF7A00;
+    margin-bottom: 10px;
+  }
+  
+  .cta-card h3 {
+    font-size: 1rem;
+    margin-bottom: 6px;
+  }
+  
+  .cta-card p {
+    font-size: 0.75rem;
+    color: #ccc;
+    margin-bottom: 15px;
+  }
+  
+  .cta-book-btn {
+    background: #FF7A00;
+    color: white;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 40px;
+    font-weight: 600;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  
+  .cta-book-btn:hover {
+    background: #e06d00;
+    transform: translateY(-1px);
+  }
+  
+  /* FAQ Section */
+  .contact-faq {
+    margin-top: 50px;
+    padding-top: 35px;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+  }
+  
+  .faq-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .faq-badge {
+    color: #FF7A00;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+  
+  .faq-header h2 {
+    font-size: 1.6rem;
+    font-family: 'Playfair Display', serif;
+    color: #1A1A1A;
+  }
+  
+  .faq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  
+  .faq-accordion {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+  }
+  
+  .faq-accordion:hover {
+    border-color: rgba(255, 122, 0, 0.3);
+  }
+  
+  .faq-question {
+    width: 100%;
+    padding: 14px 16px;
+    background: white;
+    border: none;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: #1A1A1A;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+  }
+  
+  .faq-question i {
+    transition: transform 0.3s ease;
+    color: #FF7A00;
+    font-size: 0.7rem;
+  }
+  
+  .faq-accordion.active .faq-question i {
+    transform: rotate(45deg);
+  }
+  
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    padding: 0 16px;
+    color: #666;
+    font-size: 0.75rem;
+    line-height: 1.5;
+  }
+  
+  .faq-accordion.active .faq-answer {
+    max-height: 100px;
+    padding: 0 16px 14px 16px;
+  }
+  
+  /* Floating WhatsApp */
+  .floating-whatsapp {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: #25D366;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 18px;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    border: none;
+  }
+  
+  .floating-whatsapp:hover {
+    transform: scale(1.05);
+  }
+  
+  .floating-whatsapp i {
+    font-size: 1.2rem;
+  }
+  
+  .floating-whatsapp span {
+    font-weight: 600;
+    font-size: 0.8rem;
+  }
+  
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .contact-content-grid {
+      grid-template-columns: 1fr;
+      gap: 25px;
+    }
+    
+    .contact-info-cards {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .contact-right {
+      max-width: 550px;
+      margin: 0 auto;
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .contact-page-section {
+      padding: 40px 5%;
+    }
+    
+    .contact-title {
+      font-size: 1.8rem;
+    }
+    
+    .contact-info-cards {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    
+    .form-row {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    
+    .full-width {
+      grid-column: span 1;
+    }
+    
+    .form-actions {
+      flex-direction: column;
+    }
+    
+    .submit-btn, .whatsapp-btn {
+      justify-content: center;
+    }
+    
+    .faq-grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    
+    .floating-whatsapp {
+      bottom: 15px;
+      right: 15px;
+      padding: 8px 15px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .contact-title {
+      font-size: 1.5rem;
+    }
+    
+    .contact-badge::before,
+    .contact-badge::after {
+      width: 18px;
+    }
+    
+    .contact-badge::before { left: -25px; }
+    .contact-badge::after { right: -25px; }
+    
+    .contact-form-wrapper {
+      padding: 18px;
+    }
+    
+    .faq-header h2 {
+      font-size: 1.3rem;
+    }
+    
+    .floating-whatsapp span {
+      display: none;
+    }
+    
+    .floating-whatsapp {
+      padding: 10px;
+    }
+  }
+</style>
+
+<script>
+  // WhatsApp Configuration
+  function openWhatsApp() {
+    var phoneNumber = '919789029012';
+    var message = 'Hi Xspica, I need to discuss regarding workspace furniture. Could you please help me with a quote?';
+    var encodedMessage = encodeURIComponent(message);
+    window.open('https://wa.me/' + phoneNumber + '?text=' + encodedMessage, '_blank');
+  }
+  
+  // Form submission handler
+  var contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      var name = document.getElementById('fullName').value;
+      var email = document.getElementById('email').value;
+      var message = document.getElementById('message').value;
+      
+      var whatsappMsg = 'Hi Xspica,%0A%0A*New Inquiry from Website*%0A%0A*Name:* ' + name + '%0A*Email:* ' + email + '%0A*Message:* ' + message + '%0A%0APlease get back to me at the earliest.';
+      
+      window.open('https://wa.me/919789029012?text=' + whatsappMsg, '_blank');
+      
+      alert('Thank you for your message! You will be redirected to WhatsApp to complete your inquiry.');
+    });
+  }
+  
+  // FAQ Accordion
+  var faqButtons = document.querySelectorAll('.faq-question');
+  faqButtons.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var parent = this.parentElement;
+      parent.classList.toggle('active');
+    });
+  });
+</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+
+<footer class="footer-section">
+  <div class="footer-container">
+    <!-- Column 1: Branding -->
+    <div class="f-col">
+      <img src="logo-min.png" alt="Xspica Logo" class="f-logo">
+      <p>Discover Xspica, an exclusive office furniture showroom offering timeless designs, ergonomic comfort, and lasting quality for every workspace.</p>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-whatsapp"></i></a>
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+
+    <!-- Column 2: Quick Links -->
+    <div class="f-col">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+
+    <!-- Column 3: Showrooms -->
+    <div class="f-col">
+      <h3>Our Showrooms</h3>
+      <ul>
+        <li><a href="#">Chennai</a></li>
+        <li><a href="#">Bangalore</a></li>
+        <li><a href="#">Hyderabad</a></li>
+      </ul>
+    </div>
+
+    <!-- Column 4: Location -->
+    <div class="f-col">
+      <h3>Location</h3>
+      <p><strong>Chennai Showroom:</strong><br>No.10, Kuppuswamy Street, T. Nagar, Chennai - 600 017.</p>
+    </div>
+
+    <!-- Column 5: Gallery -->
+    <div class="f-col">
+      <h3>Gallery</h3>
+      <div class="gallery-grid">
+        <img src="https://images.pexels.com/photos/1957477/pexels-photo-1957477.jpeg" class="gal-img" onclick="openLightbox(this.src)">
+        <img src="https://images.pexels.com/photos/276583/pexels-photo-276583.jpeg" class="gal-img" onclick="openLightbox(this.src)">
+        <img src="https://images.pexels.com/photos/380768/pexels-photo-380768.jpeg" class="gal-img" onclick="openLightbox(this.src)">
+        <img src="https://images.pexels.com/photos/3184432/pexels-photo-3184432.jpeg" class="gal-img" onclick="openLightbox(this.src)">
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Lightbox Modal -->
+<div id="lightbox" class="lightbox" onclick="this.style.display='none'">
+  <img id="lightbox-img" src="">
+</div>
+
+<style>
+  .footer-section { background: #0a0a0a; color: #888; padding: 60px 5%; border-top: 1px solid #222; }
+  /* Updated to 5 columns */
+  .footer-container { display: grid; grid-template-columns: repeat(5, 1fr); gap: 30px; max-width: 1200px; margin: 0 auto; }
+  
+  .f-col h3 { color: #c4a165; margin-bottom: 20px; font-size: 1.1rem; }
+  .f-logo { width: 120px; margin-bottom: 15px; }
+  .f-col ul { list-style: none; padding: 0; }
+  .f-col ul li a { color: #888; text-decoration: none; display: block; padding: 5px 0; transition: 0.3s; }
+  .f-col ul li a:hover { color: #c4a165; }
+
+  /* Gallery Grid */
+  .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .gal-img { width: 100%; height: 70px; object-fit: cover; border-radius: 6px; cursor: pointer; transition: 0.3s; }
+  .gal-img:hover { transform: scale(1.05); }
+
+  /* Lightbox */
+  .lightbox { display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); text-align: center; }
+  .lightbox img { max-width: 90%; max-height: 90%; margin-top: 5%; border-radius: 8px; }
+
+  @media (max-width: 992px) { 
+    .footer-container { grid-template-columns: repeat(2, 1fr); } 
+  }
+  @media (max-width: 600px) { 
+    .footer-container { grid-template-columns: 1fr; } 
+  }
+</style>
+
+<script>
+  function openLightbox(src) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').style.display = 'block';
+  }
+</script>
+
+</body>
+</html>

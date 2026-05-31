@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="pageTitle">Xspica | Premium Furniture Collection</title>
+  <meta name="description" id="metaDescription" content="Explore Xspica's premium furniture collections">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="products-data.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #FFFFFF 0%, #FFF9F0 100%);
+    }
+    
+    .collection-page {
+      padding: 60px 5%;
+      min-height: 100vh;
+    }
+    
+    .collection-container {
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    
+    /* Breadcrumb */
+    .breadcrumb {
+      margin-bottom: 30px;
+      font-size: 0.85rem;
+    }
+    
+    .breadcrumb a {
+      color: #888;
+      text-decoration: none;
+    }
+    
+    .breadcrumb a:hover {
+      color: #FF7A00;
+    }
+    
+    .breadcrumb i {
+      margin: 0 8px;
+      font-size: 0.7rem;
+    }
+    
+    /* Hero Section */
+    .collection-hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+      margin-bottom: 60px;
+    }
+    
+    .hero-badge {
+      color: #FF7A00;
+      font-size: 0.7rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      display: inline-block;
+    }
+    
+    .hero-title {
+      font-size: 3rem;
+      font-family: 'Playfair Display', serif;
+      margin: 15px 0;
+      color: #1A1A1A;
+    }
+    
+    .hero-title .accent {
+      color: #FF7A00;
+    }
+    
+    .hero-description {
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    
+    .hero-stats {
+      display: flex;
+      gap: 25px;
+    }
+    
+    .hero-stat {
+      text-align: center;
+    }
+    
+    .hero-stat span {
+      display: block;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #FF7A00;
+    }
+    
+    .hero-image img {
+      width: 100%;
+      border-radius: 24px;
+      object-fit: cover;
+    }
+    
+    /* Products Header */
+    .products-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    
+    .products-header h2 {
+      font-size: 1.5rem;
+      font-family: 'Playfair Display', serif;
+    }
+    
+    .filter-select {
+      padding: 10px 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: white;
+      cursor: pointer;
+    }
+    
+    /* Products Grid */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 25px;
+      margin-bottom: 60px;
+    }
+    
+    .product-card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      cursor: pointer;
+    }
+    
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(255, 122, 0, 0.12);
+    }
+    
+    .product-image {
+      position: relative;
+      overflow: hidden;
+      height: 260px;
+    }
+    
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+    
+    .product-card:hover .product-image img {
+      transform: scale(1.05);
+    }
+    
+    .product-badge {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: #FF7A00;
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+    
+    .product-actions {
+      position: absolute;
+      bottom: -50px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      transition: bottom 0.3s;
+    }
+    
+    .product-card:hover .product-actions {
+      bottom: 20px;
+    }
+    
+    .quick-view {
+      background: #FF7A00;
+      color: white;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+    
+    .product-info {
+      padding: 18px;
+    }
+    
+    .product-info h3 {
+      font-size: 1rem;
+      margin-bottom: 5px;
+      color: #1A1A1A;
+    }
+    
+    .product-category {
+      font-size: 0.7rem;
+      color: #FF7A00;
+      margin-bottom: 8px;
+    }
+    
+    .product-info p {
+      font-size: 0.75rem;
+      color: #666;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+    
+    .product-price {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    
+    .current-price {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #FF7A00;
+    }
+    
+    .original-price {
+      font-size: 0.8rem;
+      color: #999;
+      text-decoration: line-through;
+    }
+    
+    .product-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: #FF7A00;
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: 60px;
+      background: white;
+      border-radius: 20px;
+    }
+    
+    .empty-state i {
+      font-size: 3rem;
+      color: #FF7A00;
+      margin-bottom: 15px;
+    }
+    
+    /* Loading State */
+    .loading-state {
+      text-align: center;
+      padding: 60px;
+    }
+    
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 3px solid #f0f0f0;
+      border-top-color: #FF7A00;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    /* Features Section */
+    .features-section {
+      margin-bottom: 60px;
+    }
+    
+    .features-section h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-family: 'Playfair Display', serif;
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 25px;
+    }
+    
+    .feature {
+      text-align: center;
+      padding: 25px;
+      background: white;
+      border-radius: 16px;
+      transition: all 0.3s;
+    }
+    
+    .feature:hover {
+      transform: translateY(-3px);
+    }
+    
+    .feature i {
+      font-size: 2rem;
+      color: #FF7A00;
+      margin-bottom: 10px;
+    }
+    
+    /* Customization Section */
+    .customization-section {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      margin-bottom: 40px;
+    }
+    
+    .customization-section h2 {
+      margin-bottom: 25px;
+      font-family: 'Playfair Display', serif;
+    }
+    
+    .customization-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+    
+    .custom-option span {
+      font-weight: 700;
+      display: block;
+      margin-bottom: 5px;
+    }
+    
+    /* CTA Banner */
+    .cta-banner {
+      background: linear-gradient(135deg, #1A1A1A 0%, #2A2A2A 100%);
+      border-radius: 20px;
+      padding: 50px;
+      text-align: center;
+    }
+    
+    .cta-banner h3 {
+      color: white;
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+    
+    .cta-banner p {
+      color: #ccc;
+      margin-bottom: 20px;
+    }
+    
+    .cta-button {
+      background: #FF7A00;
+      color: white;
+      border: none;
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .cta-button:hover {
+      background: #e06d00;
+      transform: translateY(-2px);
+    }
+    
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .collection-hero {
+        grid-template-columns: 1fr;
+      }
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+      .customization-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-title {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+    <!-- Sticky Navbar -->
+<nav class="navbar" id="navbar">
+  <div class="logo">
+    <a href="#">
+      <img src="logo-min.png" alt="Xspica Luxury Furniture" class="logo-img" id="mainLogo">
+    </a>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#about">About</a></li>
+    
+    <!-- Products Dropdown - Simple 4 options -->
+    <li class="dropdown-trigger" style="position: relative;">
+      <a href="#">Products <i class="fas fa-chevron-down" style="font-size: 10px;"></i></a>
+      <div class="simple-dropdown">
+        <div class="simple-dropdown-content">
+          <a href="collection.html?collection=seating">Collaborative</a>
+          <a href="collection.html?collection=executive-cabin">Executive Cabin</a>
+          <a href="collection.html?collection=modern">Workstation</a>
+          <a href="collection.html?collection=seating">Chair</a>
+        </div>
+      </div>
+    </li>
+    
+    <!-- Blog Dropdown - NEW -->
+    <li class="dropdown-trigger" style="position: relative;">
+      <a href="#">Blog <i class="fas fa-chevron-down" style="font-size: 10px;"></i></a>
+      <div class="blog-dropdown">
+        <div class="blog-dropdown-content">
+          <a href="blog1.html">Modular Office Workstations</a>
+          <a href="blog2.html">Xspica Furniture in Chennai</a>
+          <a href="blog3.html">Create a Comfortable Atmosphere</a>
+        </div>
+      </div>
+    </li>
+    
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="#" class="btn-cta magnetic-btn" id="getQuoteBtn">Get Quote</a>
+  <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+</nav>
+
+<!-- Premium Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-header-row">
+    <img src="logo-min.png" alt="Xspica" class="mobile-menu-logo-img">
+    <div class="close-mobile" id="closeMobile"><i class="fas fa-times"></i></div>
+  </div>
+  
+  <div class="mobile-nav-item">
+    <a href="index.html" class="mobile-nav-link">Home</a>
+  </div>
+  <div class="mobile-nav-item">
+    <a href="index.html#about" class="mobile-nav-link">About</a>
+  </div>
+  
+  <!-- Products Dropdown - Mobile -->
+  <div class="mobile-nav-item">
+    <div class="mobile-nav-link" id="mobileProductsTrigger">
+      Products <i class="fas fa-chevron-down"></i>
+    </div>
+    <div class="mobile-submenu" id="mobileProductsSubmenu">
+      <a href="collection.html?collection=seating">Collaborative</a>
+      <a href="collection.html?collection=executive-cabin">Executive Cabin</a>
+      <a href="collection.html?collection=modern">Workstation</a>
+      <a href="collection.html?collection=seating">Chair</a>
+    </div>
+  </div>
+  
+  <!-- Blog Dropdown - Mobile NEW -->
+  <div class="mobile-nav-item">
+    <div class="mobile-nav-link" id="mobileBlogTrigger">
+      Blog <i class="fas fa-chevron-down"></i>
+    </div>
+    <div class="mobile-submenu" id="mobileBlogSubmenu">
+      <a href="blog1.html">Modular Office Workstations</a>
+      <a href="blog2.html">Xspica Furniture in Chennai</a>
+      <a href="blog3.html">Create a Comfortable Atmosphere</a>
+    </div>
+  </div>
+  
+  <div class="mobile-nav-item">
+    <a href="contact.html" class="mobile-nav-link">Contact</a>
+  </div>
+  
+  <a href="#" class="mobile-cta" id="mobileQuoteBtn">Get Quote</a>
+</div>
+<div class="overlay" id="overlay"></div>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: #FFFFFF;
+    font-family: 'Inter', sans-serif;
+    color: #1A1A1A;
+    overflow-x: hidden;
+  }
+
+  /* ----- NAVBAR (Premium Sticky) ----- */
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    padding: 0 40px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Logo Image styling */
+  .logo-img {
+    height: 48px;
+    width: auto;
+    display: block;
+    transition: all 0.3s ease;
+    filter: brightness(0) invert(0);
+  }
+
+  .logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  /* Desktop Nav Menu */
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    list-style: none;
+  }
+  .nav-links li {
+    position: relative;
+  }
+  .nav-links a {
+    text-decoration: none;
+    font-weight: 500;
+    color: #1A1A1A;
+    transition: color 0.2s;
+    font-size: 0.95rem;
+    letter-spacing: 0.3px;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: #FF7A00;
+    transition: width 0.25s ease;
+  }
+  .nav-links a:hover::after {
+    width: 100%;
+  }
+  .nav-links a:hover {
+    color: #FF7A00;
+  }
+  .active-menu a {
+    color: #FF7A00 !important;
+  }
+  .active-menu a::after {
+    width: 100% !important;
+    background: #FF7A00;
+  }
+
+  /* Desktop Simple Dropdown - Products */
+  .dropdown-trigger {
+    position: relative;
+  }
+  
+  .simple-dropdown {
+    position: absolute;
+    top: 100%;
+    left: -10px;
+    width: 200px;
+    background: rgba(255,255,255,0.98);
+    backdrop-filter: blur(12px);
+    border-radius: 16px;
+    padding: 8px 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s cubic-bezier(0.2,0.9,0.4,1.1), visibility 0.3s cubic-bezier(0.2,0.9,0.4,1.1);
+    transform: translateY(10px);
+    box-shadow: 0 20px 35px rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.05);
+    pointer-events: none;
+    z-index: 10000;
+    margin-top: 5px;
+  }
+  
+  .simple-dropdown-content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .simple-dropdown-content a {
+    display: block;
+    color: #1A1A1A;
+    padding: 10px 20px;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+  
+  .simple-dropdown-content a:hover {
+    color: #FF7A00;
+    background: rgba(255, 122, 0, 0.05);
+    padding-left: 25px;
+  }
+  
+  /* Blog Dropdown */
+  .blog-dropdown {
+    position: absolute;
+    top: 100%;
+    left: -10px;
+    width: 260px;
+    background: rgba(255,255,255,0.98);
+    backdrop-filter: blur(12px);
+    border-radius: 16px;
+    padding: 8px 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s cubic-bezier(0.2,0.9,0.4,1.1), visibility 0.3s cubic-bezier(0.2,0.9,0.4,1.1);
+    transform: translateY(10px);
+    box-shadow: 0 20px 35px rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.05);
+    pointer-events: none;
+    z-index: 10000;
+    margin-top: 5px;
+  }
+  
+  .blog-dropdown-content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .blog-dropdown-content a {
+    display: block;
+    color: #1A1A1A;
+    padding: 10px 20px;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+  }
+  
+  .blog-dropdown-content a:last-child {
+    border-bottom: none;
+  }
+  
+  .blog-dropdown-content a:hover {
+    color: #FF7A00;
+    background: rgba(255, 122, 0, 0.05);
+    padding-left: 25px;
+  }
+  
+  .dropdown-trigger::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 15px;
+    background: transparent;
+    z-index: 10001;
+  }
+  
+  .dropdown-trigger:hover .simple-dropdown,
+  .dropdown-trigger:hover .blog-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  
+  .simple-dropdown:hover,
+  .blog-dropdown:hover {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  /* Magnetic CTA Button */
+  .btn-cta {
+    background: #FF7A00;
+    border: none;
+    padding: 10px 28px;
+    border-radius: 40px;
+    font-weight: 600;
+    color: white;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 12px rgba(255,122,0,0.2);
+    letter-spacing: 0.3px;
+    display: inline-block;
+    text-decoration: none;
+  }
+  .btn-cta:hover {
+    background: #e06d00;
+    transform: scale(1.02);
+    box-shadow: 0 8px 20px rgba(255,122,0,0.3);
+  }
+  .magnetic-btn {
+    display: inline-block;
+    transition: transform 0.2s ease;
+  }
+
+  /* Mobile Menu Styles */
+  .hamburger {
+    display: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #1A1A1A;
+    z-index: 10001;
+  }
+
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -75%;
+    width: 75%;
+    max-width: 400px;
+    height: 100vh;
+    background: rgba(255,255,255,0.98);
+    backdrop-filter: blur(24px);
+    z-index: 10002;
+    padding: 28px 24px 40px;
+    transition: right 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: -10px 0 40px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    overflow-y: auto;
+  }
+  .mobile-menu.open {
+    right: 0;
+  }
+  .mobile-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+  .mobile-menu-logo-img {
+    height: 42px;
+    width: auto;
+    filter: brightness(0);
+  }
+  .close-mobile {
+    font-size: 28px;
+    cursor: pointer;
+    color: #1A1A1A;
+    transition: 0.2s;
+    line-height: 1;
+  }
+  .close-mobile:hover { color: #FF7A00; }
+  
+  .mobile-nav-item {
+    width: 100%;
+  }
+  .mobile-nav-link {
+    font-size: 1.3rem;
+    font-weight: 500;
+    text-decoration: none;
+    color: #1A1A1A;
+    padding: 14px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    transition: 0.2s;
+  }
+  .mobile-nav-link i {
+    font-size: 0.9rem;
+    transition: transform 0.2s;
+  }
+  .mobile-nav-link.active-dropdown i {
+    transform: rotate(180deg);
+  }
+  .mobile-submenu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.33, 1, 0.68, 1);
+    background: rgba(0,0,0,0.02);
+    border-radius: 16px;
+    margin-bottom: 8px;
+    padding-left: 12px;
+  }
+  .mobile-submenu a {
+    display: block;
+    padding: 12px 0 12px 12px;
+    font-size: 1rem;
+    color: #444;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0,0,0,0.03);
+  }
+  .mobile-submenu a:last-child {
+    border-bottom: none;
+  }
+  .mobile-submenu a:hover {
+    color: #FF7A00;
+    padding-left: 18px;
+  }
+  .mobile-cta {
+    margin-top: 32px;
+    background: #FF7A00;
+    text-align: center;
+    border-radius: 44px;
+    padding: 14px;
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+    display: block;
+    font-size: 1rem;
+  }
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.3);
+    backdrop-filter: blur(3px);
+    z-index: 10001;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s ease;
+  }
+  .overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  @media (max-width: 1024px) {
+    .nav-links { display: none; }
+    .hamburger { display: block; }
+    .navbar .btn-cta { display: none; }
+    .navbar { padding: 0 24px; }
+  }
+
+  /* Hero Section */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(105deg, #1A1A1A 0%, #2C2C2C 100%);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-top: 0;
+    padding-top: 0;
+  }
+  .hero-content {
+    text-align: center;
+    color: white;
+    z-index: 2;
+    max-width: 800px;
+    padding: 0 24px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 7vw, 5.8rem);
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+  }
+  .hero p {
+    font-size: 1.2rem;
+    opacity: 0.85;
+    max-width: 600px;
+    margin: 0 auto;
+    font-weight: 300;
+  }
+  .cursor-follower {
+    width: 28px;
+    height: 28px;
+    background: #FF7A00;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 99999;
+    mix-blend-mode: difference;
+    transition: 0.08s linear;
+  }
+  .floating-cta {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    z-index: 998;
+    background: #FF7A00;
+    padding: 16px 28px;
+    border-radius: 60px;
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.2);
+    backdrop-filter: blur(4px);
+    transition: 0.2s;
+    cursor: pointer;
+    border: none;
+    font-family: 'Inter', sans-serif;
+  }
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 2.5rem; }
+    .floating-cta { padding: 12px 20px; font-size: 0.8rem; bottom: 20px; right: 20px; }
+  }
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+  
+  // WhatsApp Configuration
+  const WHATSAPP_NUMBER = '9789029012';
+  const WHATSAPP_MESSAGE = 'Hi Xspica, I need to discuss regarding workspace furniture. Could you please help me with a quote?';
+  
+  // Function to open WhatsApp
+  function openWhatsApp() {
+    const encodedMessage = encodeURIComponent(WHATSAPP_MESSAGE);
+    const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+    window.open(whatsappURL, '_blank');
+  }
+  
+  // Mouse follower
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', (e) => {
+    gsap.to(cursor, { duration: 0.05, x: e.clientX - 14, y: e.clientY - 14 });
+  });
+
+  // Magnetic button effect (desktop)
+  const magneticBtn = document.querySelector('.magnetic-btn');
+  if(magneticBtn) {
+    magneticBtn.addEventListener('mousemove', (e) => {
+      const rect = magneticBtn.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width/2;
+      const y = e.clientY - rect.top - rect.height/2;
+      gsap.to(magneticBtn, { duration: 0.3, x: x * 0.2, y: y * 0.2, ease: "power2.out" });
+    });
+    magneticBtn.addEventListener('mouseleave', () => { gsap.to(magneticBtn, { duration: 0.4, x: 0, y: 0 }); });
+  }
+  
+  // NAVBAR SCROLL HANDLER
+  const navbar = document.getElementById('navbar');
+  
+  function handleNavbarScroll() {
+    if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  }
+  
+  window.addEventListener('scroll', handleNavbarScroll);
+  handleNavbarScroll();
+  
+  // Active link on scroll
+  const sections = document.querySelectorAll('section[id]');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 120;
+      if(pageYOffset >= sectionTop) current = section.getAttribute('id');
+    });
+    
+    document.querySelectorAll('.nav-links > li > a').forEach(link => {
+      const href = link.getAttribute('href');
+      if (!href || href === '#' || href === '') return;
+      
+      link.parentElement.classList.remove('active-menu');
+      if (href === `#${current}`) {
+        link.parentElement.classList.add('active-menu');
+      }
+    });
+  });
+  
+  // Navbar slide from top on load
+  gsap.fromTo(".navbar", { y: -100 }, { duration: 0.8, y: 0, ease: "power3.out" });
+  
+  // Hero text reveal
+  gsap.from(".hero h1", { duration: 1, y: 60, opacity: 0, ease: "back.out(0.6)" });
+  gsap.from(".hero p", { duration: 1, y: 30, opacity: 0, delay: 0.3 });
+  
+  // Floating CTA animation
+  gsap.to("#floatingCTA", { y: -6, duration: 1.2, repeat: -1, yoyo: true, ease: "power1.inOut" });
+  
+  // Quote buttons - WhatsApp Integration
+  const getQuote = document.getElementById('getQuoteBtn');
+  if(getQuote) getQuote.addEventListener('click', (e) => { 
+    e.preventDefault(); 
+    openWhatsApp();
+  });
+  
+  document.getElementById('floatingCTA')?.addEventListener('click', () => openWhatsApp());
+  
+  const mobileQuote = document.getElementById('mobileQuoteBtn');
+  if(mobileQuote) mobileQuote.addEventListener('click', (e) => { 
+    e.preventDefault(); 
+    openWhatsApp();
+    closeMobileMenu(); 
+  });
+  
+  // Mobile Menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const overlayDiv = document.getElementById('overlay');
+  const closeMobileBtn = document.getElementById('closeMobile');
+  
+  // Products dropdown for mobile
+  const productsTrigger = document.getElementById('mobileProductsTrigger');
+  const productsSubmenu = document.getElementById('mobileProductsSubmenu');
+  let productsOpen = false;
+  
+  if(productsTrigger && productsSubmenu) {
+    productsTrigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if(productsOpen) {
+        productsSubmenu.style.maxHeight = '0';
+        productsTrigger.classList.remove('active-dropdown');
+      } else {
+        productsSubmenu.style.maxHeight = productsSubmenu.scrollHeight + 'px';
+        productsTrigger.classList.add('active-dropdown');
+      }
+      productsOpen = !productsOpen;
+    });
+  }
+  
+  // Blog dropdown for mobile - NEW
+  const blogTrigger = document.getElementById('mobileBlogTrigger');
+  const blogSubmenu = document.getElementById('mobileBlogSubmenu');
+  let blogOpen = false;
+  
+  if(blogTrigger && blogSubmenu) {
+    blogTrigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if(blogOpen) {
+        blogSubmenu.style.maxHeight = '0';
+        blogTrigger.classList.remove('active-dropdown');
+      } else {
+        blogSubmenu.style.maxHeight = blogSubmenu.scrollHeight + 'px';
+        blogTrigger.classList.add('active-dropdown');
+      }
+      blogOpen = !blogOpen;
+    });
+  }
+  
+  function openMobileMenu() {
+    mobileMenu.classList.add('open');
+    overlayDiv.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    gsap.fromTo(mobileMenu, { right: '-75%' }, { right: '0%', duration: 0.6, ease: "power3.out" });
+  }
+  
+  function closeMobileMenu() {
+    gsap.to(mobileMenu, { right: '-75%', duration: 0.5, ease: "power3.in", onComplete: () => {
+      mobileMenu.classList.remove('open');
+      overlayDiv.classList.remove('active');
+      document.body.style.overflow = '';
+      if(productsOpen) {
+        productsSubmenu.style.maxHeight = '0';
+        productsTrigger.classList.remove('active-dropdown');
+        productsOpen = false;
+      }
+      if(blogOpen) {
+        blogSubmenu.style.maxHeight = '0';
+        blogTrigger.classList.remove('active-dropdown');
+        blogOpen = false;
+      }
+    }});
+  }
+  
+  hamburger?.addEventListener('click', openMobileMenu);
+  closeMobileBtn?.addEventListener('click', closeMobileMenu);
+  overlayDiv?.addEventListener('click', closeMobileMenu);
+  
+  document.querySelectorAll('.mobile-menu a:not(.mobile-nav-link)').forEach(link => {
+    link.addEventListener('click', () => { setTimeout(() => { closeMobileMenu(); }, 100); });
+  });
+  
+  document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    if(link.id !== 'mobileProductsTrigger' && link.id !== 'mobileBlogTrigger') {
+      link.addEventListener('click', () => { setTimeout(() => { closeMobileMenu(); }, 100); });
+    }
+  });
+  
+  // Smooth anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
+      if(targetId === "#" || targetId === "") return;
+      const target = document.querySelector(targetId);
+      if(target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if(mobileMenu.classList.contains('open')) closeMobileMenu();
+      }
+    });
+  });
+  
+  // Hero parallax
+  document.querySelector('.hero')?.addEventListener('mousemove', (e) => {
+    const x = (e.clientX / window.innerWidth) * 20;
+    const y = (e.clientY / window.innerHeight) * 20;
+    gsap.to('.hero-content', { duration: 1, x: x, y: y, ease: "power1.out" });
+  });
+  
+  window.dispatchEvent(new Event('scroll'));
+</script>
+<br>
+<br>
+<section class="collection-page" id="collectionPage">
+  <div class="collection-container" id="collectionContainer">
+    <!-- Loading State -->
+    <div class="loading-state" id="loadingState">
+      <div class="spinner"></div>
+      <p>Loading collection...</p>
+    </div>
+    
+    <!-- Content will be injected here -->
+    <div id="collectionContent" style="display: none;"></div>
+  </div>
+</section>
+
+<script>
+  // Get collection slug from URL
+  function getCollectionSlug() {
+    const path = window.location.pathname;
+    const segments = path.split('/');
+    // Assuming URL pattern: /collections/executive-cabin
+    const collectionIndex = segments.indexOf('collections');
+    if (collectionIndex !== -1 && segments[collectionIndex + 1]) {
+      return segments[collectionIndex + 1];
+    }
+    // Fallback for query parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('collection') || 'executive-cabin';
+  }
+  
+  // Format price in INR
+  function formatPrice(price) {
+    return '₹' + price.toLocaleString('en-IN');
+  }
+  
+  // Render collection page
+  function renderCollection() {
+    const slug = getCollectionSlug();
+    const collection = getCollectionBySlug(slug);
+    
+    const loadingState = document.getElementById('loadingState');
+    const collectionContent = document.getElementById('collectionContent');
+    
+    if (!collection) {
+      loadingState.style.display = 'none';
+      collectionContent.style.display = 'block';
+      collectionContent.innerHTML = `
+        <div class="empty-state">
+          <i class="fas fa-box-open"></i>
+          <h3>Collection Not Found</h3>
+          <p>The collection you're looking for doesn't exist or has been moved.</p>
+          <a href="/" style="color: #FF7A00; text-decoration: none;">Return to Home</a>
+        </div>
+      `;
+      return;
+    }
+    
+    // Update page title and meta
+    document.title = `${collection.name} | Xspica Premium Furniture`;
+    document.querySelector('meta[name="description"]').setAttribute('content', collection.description);
+    
+    // Build products HTML
+    let productsHTML = '';
+    if (collection.products && collection.products.length > 0) {
+      productsHTML = collection.products.map(product => `
+        <div class="product-card" onclick="viewProduct('${product.id}')">
+          <div class="product-image">
+            <img src="${product.image}" alt="${product.name}">
+            ${product.originalPrice ? '<span class="product-badge">Sale</span>' : ''}
+            <div class="product-actions">
+              <button class="quick-view" onclick="event.stopPropagation(); quickView('${product.id}')">Quick View</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <h3>${product.name}</h3>
+            <div class="product-category">${product.category}</div>
+            <p>${product.description.substring(0, 80)}${product.description.length > 80 ? '...' : ''}</p>
+            <div class="product-price">
+              <span class="current-price">${formatPrice(product.price)}</span>
+              ${product.originalPrice ? `<span class="original-price">${formatPrice(product.originalPrice)}</span>` : ''}
+            </div>
+            <a href="#" class="product-link" onclick="event.stopPropagation(); viewProductDetails('${product.slug}')">View Details <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      `).join('');
+    } else {
+      productsHTML = `
+        <div class="empty-state" style="grid-column: 1/-1;">
+          <i class="fas fa-chair"></i>
+          <h3>Coming Soon</h3>
+          <p>New products are being added to this collection. Stay tuned!</p>
+        </div>
+      `;
+    }
+    
+    // Build full page HTML
+    const fullHTML = `
+      <!-- Breadcrumb -->
+      <div class="breadcrumb">
+        <a href="index.html">Home</a> <i class="fas fa-chevron-right"></i>
+       
+        <span>${collection.name}</span>
+      </div>
+      
+      <!-- Hero Section -->
+      <div class="collection-hero">
+        <div class="hero-content">
+          <span class="hero-badge">${collection.badge}</span>
+          <h1 class="hero-title">${collection.name.split(' ')[0]} <span class="accent">${collection.name.split(' ').slice(1).join(' ')}</span></h1>
+          <p class="hero-description">${collection.description}</p>
+          <div class="hero-stats">
+            <div class="hero-stat"><span>${collection.stats.designs}+</span> Designs</div>
+            <div class="hero-stat"><span>${collection.stats.finishes}+</span> Finishes</div>
+            <div class="hero-stat"><span>${collection.stats.sizes}+</span> Sizes</div>
+          </div>
+        </div>
+        <div class="hero-image">
+          <img src="${collection.heroImage}" alt="${collection.name}">
+        </div>
+      </div>
+      
+      <!-- Products Section -->
+      <div class="products-header">
+        <h2>${collection.name}</h2>
+        <select class="filter-select" id="sortSelect">
+          <option value="featured">Sort by: Featured</option>
+          <option value="price-low">Price: Low to High</option>
+          <option value="price-high">Price: High to Low</option>
+          <option value="newest">Newest First</option>
+        </select>
+      </div>
+      
+      <div class="products-grid" id="productsGrid">
+        ${productsHTML}
+      </div>
+      
+      <!-- Features Section -->
+      <div class="features-section">
+        <h2>Why Choose ${collection.name.split(' ')[0]} Collection</h2>
+        <div class="features-grid">
+          <div class="feature"><i class="fas fa-crown"></i><h4>Premium Materials</h4><p>Highest quality materials sourced globally</p></div>
+          <div class="feature"><i class="fas fa-gem"></i><h4>Lifetime Warranty</h4><p>10-year comprehensive coverage</p></div>
+          <div class="feature"><i class="fas fa-truck"></i><h4>Free Installation</h4><p>White-glove delivery service</p></div>
+          <div class="feature"><i class="fas fa-palette"></i><h4>Custom Options</h4><p>Tailored to your needs</p></div>
+        </div>
+      </div>
+      
+      <!-- Customization Section -->
+      <div class="customization-section">
+        <h2>Customization Options</h2>
+        <div class="customization-grid">
+          <div class="custom-option"><span>Wood Finishes</span><p>Walnut, Oak, Mahogany, Cherry, Teak</p></div>
+          <div class="custom-option"><span>Size Variations</span><p>Custom dimensions available on request</p></div>
+          <div class="custom-option"><span>Hardware Options</span><p>Gold, Silver, Black, Brass finishes</p></div>
+        </div>
+      </div>
+      
+      <!-- CTA Banner -->
+      <div class="cta-banner">
+        <h3>Experience the Collection in Person</h3>
+        <p>Visit our T. Nagar showroom to see and feel the quality firsthand</p>
+        <button class="cta-button" onclick="openWhatsApp()">Book a Consultation <i class="fas fa-arrow-right"></i></button>
+      </div>
+    `;
+    
+    // Show content
+    loadingState.style.display = 'none';
+    collectionContent.style.display = 'block';
+    collectionContent.innerHTML = fullHTML;
+    
+    // Add sort functionality
+    const sortSelect = document.getElementById('sortSelect');
+    if (sortSelect) {
+      sortSelect.addEventListener('change', (e) => {
+        sortProducts(e.target.value, collection.products);
+      });
+    }
+  }
+  
+  // Sort products
+  function sortProducts(sortBy, products) {
+    let sorted = [...products];
+    if (sortBy === 'price-low') {
+      sorted.sort((a, b) => a.price - b.price);
+    } else if (sortBy === 'price-high') {
+      sorted.sort((a, b) => b.price - a.price);
+    }
+    // Re-render with sorted products
+    const productsGrid = document.getElementById('productsGrid');
+    if (productsGrid) {
+      productsGrid.innerHTML = sorted.map(product => `
+        <div class="product-card" onclick="viewProduct('${product.id}')">
+          <div class="product-image">
+            <img src="${product.image}" alt="${product.name}">
+            ${product.originalPrice ? '<span class="product-badge">Sale</span>' : ''}
+            <div class="product-actions">
+              <button class="quick-view" onclick="event.stopPropagation(); quickView('${product.id}')">Quick View</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <h3>${product.name}</h3>
+            <div class="product-category">${product.category}</div>
+            <p>${product.description.substring(0, 80)}${product.description.length > 80 ? '...' : ''}</p>
+            <div class="product-price">
+              <span class="current-price">${formatPrice(product.price)}</span>
+              ${product.originalPrice ? `<span class="original-price">${formatPrice(product.originalPrice)}</span>` : ''}
+            </div>
+            <a href="#" class="product-link" onclick="event.stopPropagation(); viewProductDetails('${product.slug}')">View Details <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      `).join('');
+    }
+  }
+  
+  // View product
+  function viewProduct(productId) {
+    window.location.href = `/product/${productId}`;
+  }
+  
+  function viewProductDetails(productSlug) {
+    window.location.href = `/product/${productSlug}`;
+  }
+  
+  function quickView(productId) {
+    const product = getProductById(productId);
+    if (product) {
+      alert(`Quick View: ${product.name}\nPrice: ${formatPrice(product.price)}\n\nVisit product page for full details.`);
+    }
+  }
+  
+  function openWhatsApp() {
+    window.open('https://wa.me/919789029012?text=Hi%20Xspica%2C%20I%27m%20interested%20in%20your%20collection.', '_blank');
+  }
+  
+  // Initialize page
+  document.addEventListener('DOMContentLoaded', renderCollection);
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</body>
+</html>
